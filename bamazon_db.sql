@@ -35,4 +35,10 @@ SELECT * FROM products;
 
 USE bamazon;
 SELECT * FROM products WHERE `product_name` = "football";
+
+USE bamazon;
+UPDATE products SET `stock_quantity` = "11"
+WHERE `product_name` = "air compressor";
+SELECT * FROM products;
+
 	

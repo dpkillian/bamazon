@@ -65,8 +65,8 @@ function listInventory(){
 
     ])
     .then(function(itemAndCount) {
-      console.log("This is the output of the prompt, called itemAndChoice");
-      console.log(itemAndCount);
+      // console.log("This is the output of the prompt, called itemAndChoice");
+      // console.log(itemAndCount);
       connection.query("SELECT * FROM products WHERE ?", 
         [
           {
@@ -75,39 +75,63 @@ function listInventory(){
         ],
         function(error, itemRecord) {
 
-      console.log("\n");
-      console.log("This is the response (obj), called itemRecord");
-      console.log(itemRecord);
-      console.log("\n");
-      console.log("This is the response (obj), product_name");
-      console.log(itemRecord[0].product_name);
-      console.log("\n");
-      console.log("This is the response (obj), stock_quantity");
-      console.log(itemRecord[0].stock_quantity);
-      console.log("\n");
-      console.log("This is the response (obj), price");
-      console.log(itemRecord[0].price);
-      var totalPrice = itemRecord[0].price*itemAndCount.count;
-      console.log("\n");
-      console.log("This is the total price: ");
-      console.log(totalPrice);
+          // Rename values (in itemRecord object)
+          var qtyOrdered = itemAndCount.count;
+          var totalQty = itemRecord[0].stock_quantity
+          var name = itemRecord[0].product_name
+          var price = itemRecord[0].price
+          var total = price*qtyOrdered;   
+          var qtyRemaining =  totalQty-qtyOrdered; 
 
-        // console.log("\n");
-        // console.log("You have chosen:\n");
-        // console.table(item);
+          if(qtyOrdered>totalQty){
+            console.log("Sorry, there is insufficient stock to complete this purchase.");
+            // listInventory();
+
+          } else {
+
+            console.log("\nOrder summary:\n");
+              console.table([
+                {
+                  product: name,
+                  unit_price: price,
+                  qty_ordered: qtyOrdered,
+                  total_price: total 
+                }
+              ]);
+
+              console.log("Transaction Complete.\n");
+              console.log("There are " + qtyRemaining + " " + name + " remaining.\n" );
 
 
+            connection.query("UPDATE products SET ? WHERE ?",
+              [
+                {
+                  stock_quantity: qtyRemaining
+                },
 
+                {
+                  product_name: name
+                }
+              ],
+              function(error) {
+                // if (error) throw error;
+              }
+            );
+
+
+          };
 
 
       });
 
       connection.end();
 
-    });
+    });   // .then close
 
-  });
-}  
+  });     //connection query close
+
+
+}         // listInventory close
 
 
 
