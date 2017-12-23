@@ -24,5 +24,40 @@ npm install
 node bamazonCustomer.js
 ```
 
+
+##Running bamazonCustomer.js
+After typing "node bamazonCustomer.js", the user is presented with the following screen.
+
 Initial screen shot of bamazonCustomer.js
-![bamazonCustomer.js Screenshot](/images/cust1.jpeg)
+![bamazonCustomer.js Screenshot 1](/images/cust1.jpeg)
+
+	
+Initial screen shot of the bamazon_db in Sequel Pro
+![bamazonCustomer.js Screenshot 2](/images/cust2.jpeg)
+
+
+Selecting item 1 (air compressor), the user is then asked for the quantity (10):
+![bamazonCustomer.js Screenshot 3](/images/cust3.jpeg)
+
+
+The order summary is showing the details of the order:
+![bamazonCustomer.js Screenshot 4](/images/cust4.jpeg)
+
+
+Looking at the updated Sequel Pro screen, the stock_quantity is changed to reflect the new inventory total:
+![bamazonCustomer.js Screenshot 5](/images/cust5.jpeg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
