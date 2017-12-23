@@ -58,7 +58,7 @@ function queryManager() {
           break;
 
         case "Add new product":
-          AddNewProduct();
+          addNewProduct();
           break;
       }
     });
@@ -145,6 +145,68 @@ function changeInventory(){
     }); // .then closed
 
 } // function closed
+
+
+
+
+
+
+// function to handle posting new items up for auction
+function addNewProduct() {
+  // prompt for info about the item being put up for auction
+  inquirer
+    .prompt([
+      {
+        name: "productName",
+        type: "input",
+        message: "What is new product name?"
+      },
+      {
+        name: "deptName",
+        type: "input",
+        message: "What is the deptartment name for the new product?"
+      },
+      {
+        name: "price",
+        type: "input",
+        message: "What is the product price?"
+      },
+      {
+        name: "stockQuantity",
+        type: "input",
+        message: "What is the number of stocking units?",
+        validate: function(value) {
+          if (isNaN(value) === false) {
+            return true;
+          }
+          return false;
+        }
+      }
+    ])
+    .then(function(answer) {
+      // when finished prompting, insert a new item into the db with that info
+      connection.query(
+        "INSERT INTO products SET ?",
+        {
+          product_name: answer.productName,
+          department_name: answer.deptName,
+          price: answer.price,
+          stock_quantity: answer.stockQuantity
+        },
+        function(err) {
+          if (err) throw err;
+          console.log("\n---------------------------------------------------------------");
+          console.log("Your product was successfully added!");
+          console.log("---------------------------------------------------------------\n");          
+          queryManager();
+        }
+      );
+    });
+}
+
+
+
+
 
 
 
