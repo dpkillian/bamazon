@@ -10,7 +10,7 @@ The application has two interfaces, **customer** and **manager**.
 
 
 ## MySQL Database
-In order to run this application, MySQL needs to be installed and running on your machine.  If you don't have it installed, please visit the [MySQL Community Downloads page](https://dev.mysql.com/downloads/).  After MySQL is installed and running, you'll need a client to interact with the database to set it up and populate it with data.  The bamazon_db.sql file is included that contains the commands to accomplish this.
+In order to run this application, MySQL needs to be installed and running on your machine.  If you don't have it installed, please visit the [MySQL Community Downloads page](https://dev.mysql.com/downloads/).  After MySQL is installed and running, you'll need a client to interact with the database to set it up and populate it with data.  The [bamazon_db.sql](https://github.com/dpkillian/bamazon/blob/master/bamazon_db.sql) file is included that contains the commands to accomplish this.
 
 
 ## Customer Interface
