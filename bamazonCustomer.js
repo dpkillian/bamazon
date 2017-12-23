@@ -11,7 +11,7 @@ var connection = mysql.createConnection({
   port: 3306,
   user: "root",
   password: "",
-  database: "bamazon"
+  database: "bamazon_db"
 });
 
 
@@ -43,7 +43,6 @@ function listInventory(){
     console.log("---------------------------------------------------------------\n");
 
     results = list;
-
     queryUser();
 
   });     //connection.query close
@@ -114,7 +113,9 @@ function updateInventory(){
 
       // check to see if there is sufficient stock for quantity ordered
       if(qtyOrdered>totalQty){
+        console.log("\n---------------------------------------------------------------\n");
         console.log("Sorry, there is insufficient stock to complete this purchase.\n");
+        console.log("---------------------------------------------------------------\n");
         listInventory();
 
       } else { 
@@ -155,9 +156,12 @@ function updateInventory(){
 
       }  // if-else close
 
+      connection.end();
+
+
     }); // closes connection SELECT query function
 
-  listInventory();
+  // listInventory();
 
 } // closes updateInventory function
 

@@ -1,5 +1,6 @@
-CREATE DATABASE bamazon;
-USE bamazon;
+DROP DATABASE IF EXISTS bamazon_db;
+CREATE DATABASE bamazon_db;
+USE bamazon_db;
 CREATE TABLE products (
 item_id				INTEGER AUTO_INCREMENT NOT NULL,
 product_name			VARCHAR(20) NOT NULL,
@@ -9,7 +10,7 @@ stock_quantity		INTEGER NOT NULL,
 PRIMARY KEY (item_id)
 );
 
-USE bamazon;
+USE bamazon_db;
 INSERT INTO products
 	(product_name, department_name, price, stock_quantity)
 VALUES
@@ -30,13 +31,13 @@ VALUES
 	("bat",				"sports", "31.79",	"77");
 	
 
-USE bamazon;
+USE bamazon_db;
 SELECT * FROM products;
 
-USE bamazon;
+USE bamazon_db;
 SELECT * FROM products WHERE `product_name` = "football";
 
-USE bamazon;
+USE bamazon_db;
 UPDATE products SET `stock_quantity` = "11"
 WHERE `product_name` = "air compressor";
 SELECT * FROM products;
