@@ -1,11 +1,14 @@
 
 DROP DATABASE IF EXISTS bamazon_db;
 
+
 -- create new database called bamazon_db
 CREATE DATABASE bamazon_db;
 
+
 -- select database
 USE bamazon_db;
+
 
 -- create products table
 CREATE TABLE products (
@@ -20,6 +23,7 @@ PRIMARY KEY (item_id)
 
 -- select database
 USE bamazon_db;
+
 
 -- create product data
 INSERT INTO products
@@ -36,18 +40,21 @@ VALUES
 	("artemis",			"book", 	"21.95",	"54"),
 	("daVinci",			"book", 	"20.32",	"22"),
 	("ponies",			"book", 	"13.98",	"61"),
-	("football",			"sports", "11.29",	"14"),
+	("football",			"sports", "11.29",	"2"),
 	("sneakers",			"sports", "61.99",	"19"),
 	("glove",				"sports", "88.00",	"31"),
-	("bat",				"sports", "31.79",	"77");
+	("bat",				"sports", "31.79",	"4");
+
 	
 -- display all data in the products table
 USE bamazon_db;
 SELECT * FROM products;
 
+
 -- find item that matches product name
 USE bamazon_db;
 SELECT * FROM products WHERE `product_name` = "football";
+
 
 -- update quantity where name = air compressor to stock_qunatity of 11
 USE bamazon_db;
@@ -55,15 +62,21 @@ UPDATE products SET `stock_quantity` = "11"
 WHERE `product_name` = "air compressor";
 SELECT * FROM products;
 
+
 -- find all products where stock quantity is lower than 5
 USE bamazon_db;
 SELECT * FROM products WHERE `stock_quantity` < "5";
 
+
 -- update product with new stock quantity
 USE bamazon_db;
-UPDATE products SET 'stock_quantity' = "4"
-WHERE "item_id" = "6";
+UPDATE products SET `stock_quantity` = "2"
+WHERE `item_id` = "6";
 SELECT * FROM products;
 
 
-	
+-- update product with new stock quantity
+USE bamazon_db;
+UPDATE products SET `stock_quantity` = `stock_quantity` + "100"
+WHERE `item_id` = "6";
+SELECT * FROM products;

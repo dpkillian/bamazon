@@ -27,7 +27,6 @@ var results = [];
 // connect to the mysql server and sql database
 connection.connect(function(error) {
   if (error) throw error;
-
 });
 
 
@@ -40,7 +39,7 @@ function queryManager() {
       choices: [
         "View products for sale",
         "View low inventory",
-        "Add to inventory",
+        "Change total inventory",
         "Add new product",
       ]
     })
@@ -54,8 +53,8 @@ function queryManager() {
           viewLowInventory();
           break;
 
-        case "Add to inventory":
-          addToInventory();
+        case "Change total inventory":
+          changeInventory();
           break;
 
         case "Add new product":
@@ -103,7 +102,7 @@ function viewLowInventory(){
 
 
 
-function addToInventory(){
+function changeInventory(){
 
   inquirer
     .prompt([
@@ -115,32 +114,37 @@ function addToInventory(){
       {
         name: "qty",
         type: "input",
-        message: "Please add net new inventory to add: "
+        message: "Please add the new inventory total: "
       }
     ])
-    .then(function(answer) {
+    .then(function(response) {
 
       // when finished prompting, insert a new item into the db with that info
       connection.query("UPDATE products SET ? WHERE ?",
+      [
         {
-          stock_quantity: stock_quantity+answer.qty
+          stock_quantity: response.qty
         },
 
         {
-          item_id: answer.itemNum
+          item_id: response.itemNum
         }
+      ],
 
         function(err) {
           if (err) throw err;
+          console.log("\n---------------------------------------------------------------");
           console.log("Your product was successfully updated!");
+          console.log("---------------------------------------------------------------\n");
           // re-prompt the user for if they want to bid or post
           queryManager();
         }
-      );
 
-    });
-    
-}
+      ); // connection query closed
+
+    }); // .then closed
+
+} // function closed
 
 
 
