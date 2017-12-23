@@ -16,13 +16,20 @@ In order to run this application, MySQL needs to be installed and running on you
 ## Customer Interface
 The user is initially presented with the current inventory of store items including: item_id, product_name,  department_name, price and stock_quantity. The user is then prompted to select an item (by item number) and the desired quantity.  If the selected quantity is available the order is fulfilled, and the order summary is displayed (product, unit_price, qty_ordered, total_price). Finally, the database is updated with the new stock_quantity of the ordered product. If the desired quantity is not available, the user is prompted to modify their order.
 
-To run the customer interface please follow the steps below:
+To run the customer interface, follow the steps below:
 ```
 git clone git@github.com:dpkillian/bamazon.git
 cd bamazon
 npm install
 node bamazonCustomer.js
 ```
+
+
+To run the manager interface, after first cloning and installing bamazon, type the following:
+```
+node bamazonManager.js
+```
+
 
 
 ## Running bamazonCustomer.js
@@ -51,6 +58,7 @@ Looking at the updated Sequel Pro screen, the stock_quantity is changed to refle
 
 
 
+## Running bamazonManager.js
 
 
 

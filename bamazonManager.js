@@ -71,17 +71,77 @@ function queryManager() {
 function listInventory(){
   connection.query("SELECT * FROM products", function(error, list) {
     if (error) throw error;
-    console.log("\nHere is Bamazon's Inventory List:");
-    console.log("\n---------------------------------------------------------------");
+    console.log("\n** Inventory List:");
+    console.log("---------------------------------------------------------------");
     console.table(list);
     console.log("---------------------------------------------------------------\n");
 
     results = list;
     queryManager();
 
-  });     //connection.query close
+  }); //connection.query close
 
 }  // closes listInventory function
+
+
+
+
+function viewLowInventory(){
+  var query = "SELECT * FROM products WHERE stock_quantity < 5";
+  connection.query(query, function(err, res) {
+
+    console.log("\n** Low Inventory (less than 5 units)");
+    console.log("---------------------------------------------------------------");
+    console.table(res);
+    console.log("---------------------------------------------------------------\n");
+    queryManager();
+
+  }); //connection.query close
+
+} // closes viewLowInventory
+
+
+
+
+function addToInventory(){
+
+  inquirer
+    .prompt([
+      {
+        name: "itemNum",
+        type: "input",
+        message: "Please enter the item number: "
+      },
+      {
+        name: "qty",
+        type: "input",
+        message: "Please add net new inventory to add: "
+      }
+    ])
+    .then(function(answer) {
+
+      // when finished prompting, insert a new item into the db with that info
+      connection.query("UPDATE products SET ? WHERE ?",
+        {
+          stock_quantity: stock_quantity+answer.qty
+        },
+
+        {
+          item_id: answer.itemNum
+        }
+
+        function(err) {
+          if (err) throw err;
+          console.log("Your product was successfully updated!");
+          // re-prompt the user for if they want to bid or post
+          queryManager();
+        }
+      );
+
+    });
+    
+}
+
 
 
 
