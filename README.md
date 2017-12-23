@@ -25,6 +25,17 @@ node bamazonCustomer.js
 ```
 
 
+## Manager Interface
+The user/manager is initially presented with the four choices: 
+
+1. view all products
+2. view low inventory (items that have less than 5 units)
+3. change total inventory
+4. add a new item
+
+
+Once selecting a choice, the application display either the desired info, or else the user is prompted for the further inputs.  For instance, when selecting "change total inventory", the user is queried for an item numnber and the new total quantity. 
+
 To run the manager interface, after first cloning and installing bamazon, type the following:
 ```
 node bamazonManager.js
@@ -60,6 +71,26 @@ Looking at the updated Sequel Pro screen, the stock_quantity is changed to refle
 
 ## Running bamazonManager.js
 
+After typing "node bamazonManager.js", the user is presented with the following screen.
+
+Initial screen shot of bamazonManager.js
+![bamazonCustomer.js Screenshot 1](/images/mngr1.jpeg)
+
+	
+Selecting "View products for sale"
+![bamazonCustomer.js Screenshot 2](/images/mngr2.jpeg)
+
+
+Selecting "View low inventory"
+![bamazonCustomer.js Screenshot 3](/images/mngr3.jpeg)
+
+
+Selecting "Change total inventory", and selecting item 8 (lotion) and changing to 1200 units total
+![bamazonCustomer.js Screenshot 4](/images/mngr4.jpeg)
+
+
+Selecting "View products for sale" to validate that item 8 (lotion) now had 1200 units
+![bamazonCustomer.js Screenshot 5](/images/mngr5.jpeg)
 
 
 
