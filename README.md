@@ -1,4 +1,4 @@
-# bamazon
+# BAM-a-zon!!
 
 ## Description
 This application implements an Amazon-like store front built using Node.js and MySQL, and run at the command line. It is built using the following npm packages:
